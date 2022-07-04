@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RusMosDevKit</string>
+    <string name="crash">Crash</string>
 </resources>

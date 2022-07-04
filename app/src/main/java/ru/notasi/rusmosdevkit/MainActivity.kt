@@ -4,9 +4,13 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import ru.notasi.rusmosdevkit.utils.Debugger
 
 private const val className = "MainActivity"
@@ -28,6 +32,7 @@ private const val className = "MainActivity"
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var analytics: FirebaseAnalytics
 
     /**
      * Activity lifecycle callbacks.
@@ -47,6 +52,10 @@ class MainActivity : AppCompatActivity() {
      * Back press (on last (main) activity):
      * onBackPressed > onPause > onStop > onDestroy
      */
+
+    private fun crash() {
+        throw RuntimeException("Firebase Crashlytics TEST crash.")
+    }
 
     /**
      * Called when the activity is first created.
@@ -73,6 +82,11 @@ class MainActivity : AppCompatActivity() {
         )
 
         setContentView(R.layout.activity_main)
+
+        // Obtain the FirebaseAnalytics instance.
+        analytics = Firebase.analytics
+
+        findViewById<Button>(R.id.buttonCrash).setOnClickListener { crash() }
     }
 
     /**

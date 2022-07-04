@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.firebase-perf'
 }
 
 android {
@@ -12,6 +15,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,7 +43,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
 
     implementation 'androidx.core:core-splashscreen:1.0.0-rc01'
-    implementation 'androidx.fragment:fragment-ktx:1.5.0' // MainViewModel by viewModels()
+
+    // MainViewModel by viewModels()
+    implementation 'androidx.fragment:fragment-ktx:1.5.0'
+
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.11'
+    implementation 'com.google.firebase:firebase-perf-ktx:20.1.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
